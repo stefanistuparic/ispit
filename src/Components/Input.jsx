@@ -6,23 +6,23 @@ const room_name = process.env.REACT_APP_ROOM_NAME;
 
 export default function Input ({drone, username, color}) {
 
-    const [messagestate, setMessagestate] = useState('');
+    const [inputValue, setInputValue] = useState('');
 
     function handleSubmit(e) {
         e.preventDefault()
         drone.publish({
             room: room_name,
             message: {
-                text: messagestate,
+                text: inputValue,
                 username,
                 color
             }
           });        
-        setMessagestate("");
+        setInputValue('');
     }
 
     function handleChange(e) {
-        setMessagestate(e.target.value);
+        setInputValue(e.target.value);
     }
 
     
@@ -30,7 +30,7 @@ export default function Input ({drone, username, color}) {
     return(
         <div className="input-bottom">
             <form className="form" onSubmit={handleSubmit}>
-                <input value={messagestate} className="input"name="text" type="text" placeholder="Please enter your message and hit send." onChange={handleChange}/>
+                <input value={inputValue} className="input"name="text" type="text" placeholder="Please enter your message and hit send." onChange={handleChange}/>
                 <button type="submit" className="button">Send</button>
             </form>
         </div>
