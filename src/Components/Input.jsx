@@ -8,6 +8,10 @@ export default function Input ({drone, username, color}) {
 
     const [inputValue, setInputValue] = useState('');
 
+    function handleChange(e) {
+        setInputValue(e.target.value);
+    }
+
     function handleSubmit(e) {
         e.preventDefault()
         drone.publish({
@@ -19,10 +23,6 @@ export default function Input ({drone, username, color}) {
             }
           });        
         setInputValue('');
-    }
-
-    function handleChange(e) {
-        setInputValue(e.target.value);
     }
 
     
